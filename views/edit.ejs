@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Product - Men's Clothing Emporium</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; }
+    form { margin-top: 20px; }
+    label { 
+      display: block; 
+      margin-top: 15px; 
+      font-weight: bold;
+      color: #555;
+    }
+    input, select { 
+      width: 100%; 
+      padding: 10px; 
+      margin-top: 5px; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button { 
+      margin-top: 20px; 
+      padding: 12px 24px; 
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-update {
+      background-color: #007bff;
+      color: white;
+      margin-right: 10px;
+    }
+    .btn-update:hover { background-color: #0056b3; }
+    .btn-cancel {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-cancel:hover { background-color: #5a6268; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Product</h1>
+    
+    <form action="/update-product/<%= product._id %>" method="POST">
+      <label for="category">Product Category:</label>
+      <select name="category" id="category" required>
+        <option value="outer wear" <%= product.category === 'outer wear' ? 'selected' : '' %>>Outer Wear</option>
+        <option value="formal wear" <%= product.category === 'formal wear' ? 'selected' : '' %>>Formal Wear</option>
+        <option value="sports ware" <%= product.category === 'sports ware' ? 'selected' : '' %>>Sports Ware</option>
+        <option value="outdoor ware" <%= product.category === 'outdoor ware' ? 'selected' : '' %>>Outdoor Ware</option>
+      </select>
+
+      <label for="name">Product Name:</label>
+      <input type="text" id="name" name="name" value="<%= product.name %>" required />
+
+      <label for="price">Product Price:</label>
+      <input type="number" id="price" name="price" value="<%= product.price %>" step="0.01" min="0" required />
+
+      <div style="margin-top: 20px;">
+        <button type="submit" class="btn-update">Update Product</button>
+        <a href="/" style="text-decoration: none;">
+          <button type="button" class="btn-cancel">Cancel</button>
+        </a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
